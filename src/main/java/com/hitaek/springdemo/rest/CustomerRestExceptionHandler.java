@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class EmployeeRestExceptionHandler {
+public class CustomerRestExceptionHandler {
 
     // add exception handling code
     // Add an exception handler using @ExceptionHandler
     @ExceptionHandler
-    public ResponseEntity handleException(EmployeeNotFoundException ex){
+    public ResponseEntity<CustomerErrorResponse> handleException(CustomerNotFoundException ex){
         // create a EmployeeErrorResponse
 
-        EmployeeErrorResponse error = new EmployeeErrorResponse();
+        CustomerErrorResponse error = new CustomerErrorResponse();
 
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setMessage(ex.getMessage());
@@ -22,16 +22,15 @@ public class EmployeeRestExceptionHandler {
 
         // return ResponseEntity
 
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<CustomerErrorResponse>(error, HttpStatus.NOT_FOUND);
     }
 
     // another exception for catching any exception
-
     @ExceptionHandler
-    public ResponseEntity<EmployeeErrorResponse> handleException(Exception ex){
+    public ResponseEntity<CustomerErrorResponse> handleException(Exception ex){
         // create a EmployeeErrorResponse
 
-        EmployeeErrorResponse error = new EmployeeErrorResponse();
+        CustomerErrorResponse error = new CustomerErrorResponse();
 
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage(ex.getMessage());
@@ -39,8 +38,7 @@ public class EmployeeRestExceptionHandler {
 
         // return ResponseEntity
 
-        return new ResponseEntity<EmployeeErrorResponse>(error, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<CustomerErrorResponse>(error, HttpStatus.BAD_REQUEST);
 
     }
-
 }

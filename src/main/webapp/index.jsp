@@ -8,5 +8,9 @@
 <hr>
 
 <a href="${pageContext.request.contextPath}/api/employees">All Employees</a>
+<hr>
+
+<a href="${pageContext.request.contextPath}/api/customers">All Customers(from database)</a>
+
 </body>
 </html>
